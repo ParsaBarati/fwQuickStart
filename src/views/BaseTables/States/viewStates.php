@@ -1,5 +1,7 @@
 <?php
-$state = json_decode($_POST['data']);
+include_once '../../../autoload.php';
+$state = ValidateRequestForPageLoad($_POST);
+echo CheckLoadedDataFromAjaxCall($state);
 ?>
 <section class="content-header">
     <div class="container-fluid">

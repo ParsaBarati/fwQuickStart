@@ -1,5 +1,7 @@
 <?php
-$state = json_decode($_POST['data']);
+include_once '../../../autoload.php';
+$state = ValidateRequestForPageLoad($_POST);
+echo CheckLoadedDataFromAjaxCall($state);
 ?>
 <section class="content-header">
     <div class="container-fluid">
@@ -26,23 +28,23 @@ $state = json_decode($_POST['data']);
             <div class="card card-primary card-outline">
                 <div class="card-header with-border">
                     <h3 class="card-title"> ویرایش استان</h3>
-<a rel="BaseTables/States/States.php" class="btn btn-outline-primary pull-left ajax"><i
-                            class="fa fa-chevron-left"></i> بازگشت</a>
-                    <a rel="BaseTables/States/editStates.php?state_id=<?=$state->state_id;?>" class="btn btn-outline-primary pull-left ajax"><i
-                            class="fa fa-refresh"></i> تازه
+                    <a rel="BaseTables/States/States.php" class="btn btn-outline-primary pull-left ajax"><i
+                                class="fa fa-chevron-left"></i> بازگشت</a>
+                    <a rel="BaseTables/States/editStates.php?state_id=<?= $state->state_id; ?>"
+                       class="btn btn-outline-primary pull-left ajax"><i
+                                class="fa fa-refresh"></i> تازه
                         سازی</a>
                 </div>
 
                 <form id="idForm" method="post" action="">
-                    <input type="hidden" name="state_id" value="<?=$state->state_id;?>">
-                    <input type="hidden" name="controller_type" value="edit">
+                    <?=hiddenInput('edit')?>
+                    <?=hiddenInput($state->state_id,'state_id')?>
                     <div class="card-body d-flex flex-wrap table-responsive">
-
                         <div class="form-group col-md-6">
                             <label for="state_name">نام استان </label>
-                            <input type="text" class="form-control" name="state_name" id="state_name" autocomplete="off" required value="<?=$state->state_name;?>">
+                            <input type="text" class="form-control" name="state_name" id="state_name" autocomplete="off"
+                                   required value="<?= $state->state_name; ?>">
                         </div>
-
                     </div>
                     <div class="card-footer">
                         <input type="hidden" name="controller_type" value="edit">
@@ -58,23 +60,7 @@ $state = json_decode($_POST['data']);
 </section>
 
 <script>
-    $("#idForm").submit(function(e) {
-        let formData = new FormData(this);
-        $.ajax({
-            type : 'POST',
-            url :'controllers/BaseTables/States/States.php' ,
-            data :  formData,
-            async: false,
-            success:function(data)
-            {
-                $('#idForm').html(data);
-            },
-            cache: false,
-            contentType: false,
-            processData: false
-        });
-        e.preventDefault();
-    });
+    $.submit('controllers/BaseTables/States/States.php');
     $('.tooltip').hide();
     $(document).ajaxStart(function () {
         Pace.restart();

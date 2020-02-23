@@ -1,6 +1,7 @@
 <?php
 include_once '../../../autoload.php';
-$state = json_decode($_POST['data']);
+$state = ValidateRequestForPageLoad($_POST);
+echo CheckLoadedDataFromAjaxCall($state);
 ?>
 <section class="content-header">
     <div class="container-fluid">
@@ -37,7 +38,7 @@ $state = json_decode($_POST['data']);
 
                 <form id="idForm" method="post" action="">
                     <?=hiddenInput('delete')?>
-                    <input type="hidden" name="state_id" value="<?= $state->state_id; ?>">
+                    <?=hiddenInput($state->state_id,'state_id')?>
                     <div class="card-body d-flex flex-wrap table-responsive">
 
                         <div class="form-group col-md-6">
@@ -61,22 +62,8 @@ $state = json_decode($_POST['data']);
 </section>
 
 <script>
-    $("#idForm").submit(function (e) {
-        let formData = new FormData(this);
-        $.ajax({
-            type: 'POST',
-            url: 'controllers/BaseTables/States/States.php',
-            data: formData,
-            async: false,
-            success: function (data) {
-                $('#idForm').html(data);
-            },
-            cache: false,
-            contentType: false,
-            processData: false
-        });
-        e.preventDefault();
-    });
+    $.submit('controllers/BaseTables/States/States.php');
+
     $('.tooltip').hide();
     $(document).ajaxStart(function () {
         Pace.restart();

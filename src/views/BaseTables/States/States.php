@@ -43,7 +43,6 @@ echo CheckLoadedDataFromAjaxCall($States);
                         <tbody>
                         <?php
                         foreach ($States as $state) {
-
                             ?>
                             <tr>
                                 <td></td>
@@ -85,6 +84,5 @@ echo CheckLoadedDataFromAjaxCall($States);
         Pace.restart();
     });
     $.Ajax();
-    // $.count();
     $.table(true);
 </script>
