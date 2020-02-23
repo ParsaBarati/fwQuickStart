@@ -54,7 +54,7 @@ require_once 'layers/head.php';
     </nav>
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <a href="index.php" style="background-color: #ffffff" class="brand-link">
-            <img src="dist/img/CompanyLogo.png" alt="Paniz Logo" class="brand-image elevation-1">
+            <img src="dist/img/CompanyLogo.png" alt="Paniz Logo" class="brand-image">
             <span style="color: #0c0c0c" class="brand-text font-weight-light">پنل مدیریت <?=$PROJECT__NAME?></span>
         </a>
         <div class="sidebar">

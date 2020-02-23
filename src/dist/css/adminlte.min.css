@@ -8813,11 +8813,11 @@ a.text-dark:focus, a.text-dark:hover {
 .brand-image {
     float: left;
     line-height: .8;
-    max-height: 34px;
+    max-height: 42px;
     width: auto;
     margin-left: .8rem;
     margin-right: .5rem;
-    margin-top: -3px
+    margin-top: -7px;
 }
 
 .main-sidebar {
