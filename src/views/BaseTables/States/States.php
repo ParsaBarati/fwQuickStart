@@ -1,5 +1,5 @@
 <?php
-require_once '../../../helpers/helpers.php';
+include_once '../../../autoload.php';
 $States = ValidateRequestForPageLoad($_POST);
 echo CheckLoadedDataFromAjaxCall($States);
 ?>
